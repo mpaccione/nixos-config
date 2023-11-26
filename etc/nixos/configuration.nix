@@ -10,13 +10,18 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
+  # Bootloader - Desktop
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.extraModulePackages = [  
      config.boot.kernelPackages.rtl8814au # wifi adapter 
   ];
+
+  # Bootloader - Laptop
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.efiSupport = false;
+  #boot.loader.grub.device = "/dev/sda";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
