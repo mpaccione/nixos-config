@@ -114,6 +114,7 @@
      git
      gnumake
      linux-firmware
+     php
      spectacle
      usbutils
      wget
