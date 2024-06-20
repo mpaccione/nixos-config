@@ -95,14 +95,16 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
         audacity
-	docker
+	      docker
         docker-client
         docker-compose
         firefox
-	filezilla
+	      filezilla
         google-chrome
-	postman
-	slack
+        mysql-workbench
+        postman
+	      putty
+        slack
         vscode
     ];
   };
@@ -110,22 +112,37 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     cmake
      direnv
+     flatpak
      git
      gnumake
+     libglvnd
+     xorg.libXcursor
+     xorg.libXi
+     xorg.libXinerama
+     xorg.libXrandr
+     xorg.libXxf86vm
      linux-firmware
+     openssl
      php
      spectacle
+     steam
      usbutils
      wget
      vim
   ];
 
+  # Add some recommended environment variables for Steam
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam;
+  };
+
   # Insecure packages allowed
   nixpkgs.config.permittedInsecurePackages = [
     "nodejs-14.21.3"
   ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
